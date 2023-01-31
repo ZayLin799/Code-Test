@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const location = useLocation();
-  const navigate = useNavigate();
+  const history = useNavigate();
 
   const email = useRef();
   const password = useRef();
@@ -57,9 +57,11 @@ export default function Login() {
                 localStorage.setItem("role", result.data.user.role_id);
                 // getAuth(true);
                 if (result.data.user.role_id == 1) {
-                  navigate("/libHome");
+                  // history("/libHome");
+                  window.location.href = "http://localhost:3000/libHome";
                 } else if (result.data.user.role_id == 2) {
-                  navigate("/cusHome");
+                  // history("/cusHome");
+                  window.location.href = "http://localhost:3000/cusHome";
                 }
               } else {
                 setErr(true);

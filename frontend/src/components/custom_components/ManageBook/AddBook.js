@@ -21,7 +21,10 @@ export default function AddBook() {
   const getBookType = () => {
     fetch("http://localhost:8000/api/getBookType", {
       method: "get",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
     })
       .then((response) => response.json())
       .then((result) => setBookType(result.data));
@@ -51,7 +54,10 @@ export default function AddBook() {
 
           fetch("http://localhost:8000/api/storeBook", {
             method: "post",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
             body: JSON.stringify({
               name: name.current.value,
               book_type_id: BookTypeId,
@@ -61,7 +67,7 @@ export default function AddBook() {
               setErr(true);
               setErrMsg("Something Went Wrong!");
             } else {
-              navigate("/", { state: "Register successful" });
+              navigate("/libHome", { state: "Register successful" });
             }
           });
         }}

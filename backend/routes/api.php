@@ -19,11 +19,11 @@ use App\Http\Controllers\BookController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/getBook', [BookController::class, 'getBook']);
-Route::get('/getBookType', [BookController::class, 'getBookType']);
-Route::post('/storeBook', [BookController::class, 'storeBook']);
 
 Route::group(['middleware' => ['jwt.verify']], function($router) {
+    Route::get('/getBook', [BookController::class, 'getBook']);
+    Route::get('/getBookType', [BookController::class, 'getBookType']);
+    Route::post('/storeBook', [BookController::class, 'storeBook']);
     Route::post('/borrowProcess', [BookController::class, 'borrowProcess']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });

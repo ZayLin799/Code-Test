@@ -16,7 +16,10 @@ export default function CusHome() {
   const getBook = () => {
     fetch("http://localhost:8000/api/getBook", {
       method: "get",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
     })
       .then((response) => response.json())
       .then((result) => filterBook(result.data));
